@@ -12,22 +12,28 @@
 
         #wrap{width:100%}
         #wrap > div{ width: 100%; height:100vh}
-        #wrap > div:nth-child(1){background-color: burlywood;}
-        #wrap > div:nth-child(2){background-color: rgb(221, 222, 135);}
+        #wrap > div:nth-child(1){background: url(./images/img1.png) no-repeat 0 0; }
+        #wrap > div:nth-child(2){background: url(./images/profile.png) no-repeat 0 0;}
         #wrap > div:nth-child(3){background-color: rgb(135, 222, 208);}
         #wrap > div:nth-child(4){background-color: rgb(135, 183, 222);}
         #wrap > div:nth-child(5){background-color: rgb(222, 135, 208);}
         #wrap > div > div{margin: 0 auto; width: 1500px;  height: 100vh;
-                          background-color:rgba(255, 244, 146, 0.5); 
+                         
                           }
-        #main .header{ width: 100%; height: 120px; background-color: cadetblue;} 
-        #main .logo{float: left; margin:  20px 0 0 0; 
+        #main .header{ width: 100%; height: 120px; } 
+        #main .logo{float: left; margin:  20px 0 0 0; display: none;
                     width: 180px; height: 80px; background-color: antiquewhite;} 
         #main .nav{ float: right; margin: 50px 0 0 0;}
         #main .nav li{ float: left; margin-right: 50px;}     
-        #main .nav a{font-size: 20px; font-weight: 600; color:aliceblue;  } 
+        #main .nav a{font-size: 20px; font-weight: 600; color:#555; } 
         #main .nav li.on a{color:#000;}
-
+        #main h2{font-size: 50px;width: 100%; float: left; margin: 400px 0 0 0;text-align: right;
+                padding-right: 120px; box-sizing: border-box;
+        }
+        #main p{font-size: 16px; float: right; margin: 20px 0 0 0; text-align: right;
+            padding-right: 100px; box-sizing: border-box;
+            color: rgb(82, 82, 82);
+        }
         #q_mn{
             position: absolute; right:20px; top: 300px; z-index: 9999;
             width:120px; height:200px; border-radius: 6px;
@@ -38,6 +44,36 @@
         #q_mn ul.nav li{ margin-bottom:10px}   
         #q_mn ul.nav li a{ color: #ccc;}
         #q_mn ul.nav li.on a{ color: rgb(15, 15, 15);}
+
+        #skill{}
+
+        #skill .in_skill { 
+           display: flex; justify-content: center; align-items: center;
+        }
+        #skill .skill_list > li{
+            float: left; margin-right: 200px; text-align: center;
+        }
+        #skill .skill_list > li > div {
+            width: 50px; height: 300px; border: 1px solid #000;
+            position: relative; overflow: hidden;
+        }
+        #skill .skill_list > li > div > .in_box{
+            width: 50px; height: 300px; background-color: #555;
+            position: absolute;top: 300px; left: 0;
+        }
+        
+        #project_1{}
+
+        #project_1 .in_project_1{display: flex; justify-content: center; align-items: center;}
+        #project_1 .list{width: 1000px;font-size: 0;}
+        #project_1 .list > li{ width: 500px; height: 600px; float: left;
+            border: 1px solid #000; box-sizing: border-box;}
+
+        #project_1 .output{ background: url(./images/project.png) no-repeat 0 100px ;
+        background-size:100% ;}
+        #project_1 .output > div{margin: 120px 0 0 39px;
+            width: 420px; height: 270px; border: 1px solid #fff;
+            box-sizing: border-box;}
     </style>
     <script src="js/jquery.js"></script>
     <script>
@@ -99,20 +135,102 @@
                      <li><a href="#">finish</a></li>
                   </ul>
                   
-              </div>    
+              </div>   
+              <div>
+                <h2>
+                    Hello, I'm Kim Geunu
+                </h2>
+                <p>ux Designer & Front End Developer</p>
+              </div> 
             </div>
         </div>
         <!-- 소개 -->
         <div id="profile">
-            <div class="in_profile"></div>
+            <div class="in_profile">
+               
+            </div>
         </div>
         <!-- 스킬 -->
         <div id="skill">
-            <div class="in_skill"></div>
+            <div class="in_skill">
+                <ul class="skill_list">
+                    <li>
+                        <div>
+                            70%
+                            <div class="in_box in_box01"></div>
+                        </div>
+                        <h5>html</h5>
+                    </li>
+                    <li>
+                        <div>
+                            70%
+                            <div class="in_box in_box02"></div>
+                        </div>
+                        <h5>css</h5>
+                    </li>
+                    <li>
+                        <div>
+                            60%
+                            <div class="in_box in_box03"></div>
+                        </div>
+                        <h5>jquery</h5>
+                    </li>
+                    <li>
+                        <div>
+                            60%
+                            <div class="in_box in_box04"></div>
+                        </div>
+                        <h5>node.js</h5>
+                    </li>
+                </ul>
+            </div>
+            <script>
+                $(document).ready(function(){
+                    var scene01Num = 1;
+                    
+                    $(window).scroll(function(){
+                        var scrollTop = $(document).scrollTop();
+                        if(scrollTop >1800 && scene01Num ==1){
+                            scene01Num =0;
+                            $('#skill .in_box01').stop().delay(0).css({top:'300px'}).animate({top:'90px'},1000);
+                            $('#skill .in_box02').stop().delay(500).css({top:'300px'}).animate({top:'90px'},1000);
+                            $('#skill .in_box03').stop().delay(1000).css({top:'300px'}).animate({top:'120px'},1000);
+                            $('#skill .in_box04').stop().delay(1500).css({top:'300px'}).animate({top:'120px'},1000);
+
+                        }else if(scrollTop<1500 && scene01Num == 0){
+                            scene01Num = 1;
+                            $('#skill .in_box01').stop().css({top:'90px'}).animate({top:'300px'},1000);
+                            $('#skill .in_box02').stop().css({top:'90px'}).animate({top:'300px'},1000);
+                            $('#skill .in_box03').stop().css({top:'120px'}).animate({top:'300px'},1000);
+                            $('#skill .in_box04').stop().css({top:'120px'}).animate({top:'300px'},1000);
+                        }
+
+
+
+                    });
+                });
+
+            </script>
         </div>
         <!-- 프로젝트1 -->
         <div id="project_1">
-            <div class="in_project_1"></div>
+            <div class="in_project_1">
+                <ul class="list">
+                    <li class="output">
+                        <div>
+                            <img src="./images/flowr.jpg" width="420px" height="270px">
+                        </div>
+                    </li>
+                    <li class="account">
+                        <h3>프로젝트명</h3>
+                        <p>작업 기간</p>
+                        <p>작업 요청</p>
+                        <p>사용 기술</p>
+                        <a href="">코드보기</a>
+                        <a href="">결과보기</a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <!-- 마무리 -->
         <div id="end">

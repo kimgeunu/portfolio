@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{ margin: 0; padding: 0;}
+        ul,li{list-style: none;}
+        a{text-decoration: none;}
+
+        #wrap{width:100%}
+        #wrap > div{ width: 100%; height:100vh}
+        #wrap > div:nth-child(1){background-color: burlywood;}
+        #wrap > div:nth-child(2){background-color: rgb(221, 222, 135);}
+        #wrap > div:nth-child(3){background-color: rgb(135, 222, 208);}
+        #wrap > div:nth-child(4){background-color: rgb(135, 183, 222);}
+        #wrap > div:nth-child(5){background-color: rgb(222, 135, 208);}
+        #wrap > div > div{margin: 0 auto; width: 1500px;  height: 100vh;
+                          background-color:rgba(255, 244, 146, 0.5); 
+                          }
+        #main .header{ width: 100%; height: 120px; background-color: cadetblue;} 
+        #main .logo{float: left; margin:  20px 0 0 0; 
+                    width: 180px; height: 80px; background-color: antiquewhite;} 
+        #main .nav{ float: right; margin: 50px 0 0 0;}
+        #main .nav li{ float: left; margin-right: 50px;}     
+        #main .nav a{font-size: 20px; font-weight: 600; color:aliceblue;  } 
+        #main .nav li.on a{color:#000;}
+
+        #q_mn{
+            position: absolute; right:20px; top: 300px; z-index: 9999;
+            width:120px; height:200px; border-radius: 6px;
+            border:1px solid #ccc;
+            background-color: #fff; 
+        }
+        #q_mn ul.nav{ margin:0 auto; margin-top:30px; list-style:none; width:50px;}	
+        #q_mn ul.nav li{ margin-bottom:10px}   
+        #q_mn ul.nav li a{ color: #ccc;}
+        #q_mn ul.nav li.on a{ color: rgb(15, 15, 15);}
+    </style>
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function(){
+            var menu = $('.nav > li');
+            var contents = $('#wrap > div');  
+
+            $('.nav> li').click(function(event){
+                event.preventDefault();
+                
+                var tg = $(this);
+                var i = tg.index();
+                
+                var section = $('#wrap > div').eq(i);
+                var tt = section.offset().top;
+                
+                $('html, body').stop().animate({scrollTop:tt});
+            });
+            //메뉴에 addclass를 적용
+            // $(window).scroll(function(){
+            //     var sct = $(window).scrollTop();
+                
+            //     $('#wrap > div').each(function(){
+            //         var tg = $(this);
+            //         var i = tg.index();
+            //         if(tg.offset().top <= sct){
+            //             $('.nav > li').removeClass('on');
+            //             $('.nav > li').eq(i).addClass('on');
+            //     }
+            // });
+            // $(window).scroll(function(){
+            // var sct = $(window).scrollTop();
+            
+            // contents.each(function(){
+            //     var tg = $(this);
+            //     var i = tg.index();
+            //     if(tg.offset().top <= sct){
+            //         menu.removeClass('on');
+            //         menu.eq(i).addClass('on');
+            //     }
+            // });
+
+
+        });
+    </script>
+</head>
+<body>
+    <div id="wrap">
+        <!-- 메인 -->
+        <div id="main">
+            <div class="in_main">
+              <div class="header">
+                 <h1 class="logo">사이트명</h1>
+                 <ul class="nav">
+                     <li><a href="#">Home</a></li>
+                     <li><a href="#">Profile</a></li>
+                     <li><a href="#">Skill</a></li>
+                     <li><a href="#">project1</a></li>
+                     <li><a href="#">finish</a></li>
+                  </ul>
+                  
+              </div>    
+            </div>
+        </div>
+        <!-- 소개 -->
+        <div id="profile">
+            <div class="in_profile"></div>
+        </div>
+        <!-- 스킬 -->
+        <div id="skill">
+            <div class="in_skill"></div>
+        </div>
+        <!-- 프로젝트1 -->
+        <div id="project_1">
+            <div class="in_project_1"></div>
+        </div>
+        <!-- 마무리 -->
+        <div id="end">
+            <div class="in_end"></div>
+        </div>
+    </div>
+     <!-- 퀵메뉴 -->
+     <div id="q_mn">
+        <ul class="nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Skill</a></li>
+            <li><a href="#">project1</a></li>
+            <li><a href="#">finish</a></li>
+        </ul>
+    </div>
+    <script>
+        $(function(){
+            $(window).scroll(
+            function(){
+            var	windowTop =$(window).scrollTop()+300;
+            $("#q_mn").stop().animate({top:windowTop+"px" },500);
+            //$("#q_mn").stop().animate({속성:"속성값", 속성:"속성값" },1000);	
+                }
+            );
+        });
+    </script>    
+</body>
+</html>
